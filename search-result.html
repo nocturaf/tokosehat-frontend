@@ -9,6 +9,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Raleway:700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lato|Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
 
@@ -81,42 +82,12 @@
 		</svg>
 	</div>
 
-	<div class="container" style="margin-top: 200px;">
-		<h5 class="mb-4" style="font-family: 'Raleway', sans-serif">Terakhir Dibeli</h5>
+	<div class="container mb-5" style="margin-top: 200px;">
+		<a href="index.html" style="color: #1D800E;"><h5><i class="fa fa-long-arrow-left"></i> Kembali</h5></a>
+		<br>
+		<h5 class="mb-4" style="font-family: 'Raleway', sans-serif">Hasil Pencarian</h5>
 
-		<div id="foodList" class="row latestPurchase" style="font-family: 'Raleway', sans-serif;">
-
-		</div>
-	</div>
-
-	<div class="container mb-5" style="margin-top: 50px;">
-		<h5 class="mb-4" style="font-family: 'Raleway', sans-serif">Rekomendasi Hari ini</h5>
-
-		<div id="foodList" class="row recommend" style="font-family: 'Raleway', sans-serif;">
-
-		</div>
-	</div>
-
-	<div class="container mb-5" style="margin-top: 50px;">
-		<h5 class="mb-4" style="font-family: 'Raleway', sans-serif">Untuk Vegetarian</h5>
-
-		<div id="foodList" class="row vegetarian" style="font-family: 'Raleway', sans-serif;">
-
-		</div>
-	</div>
-
-	<div class="container mb-5" style="margin-top: 50px;">
-		<h5 class="mb-4" style="font-family: 'Raleway', sans-serif">Non Seafood</h5>
-
-		<div id="foodList" class="row nonSeafood" style="font-family: 'Raleway', sans-serif;">
-
-		</div>
-	</div>
-
-	<div class="container mb-5" style="margin-top: 50px;">
-		<h5 class="mb-4" style="font-family: 'Raleway', sans-serif">Selera Pedas</h5>
-
-		<div id="foodList" class="row spicy" style="font-family: 'Raleway', sans-serif;">
+		<div id="foodList" class="row results" style="font-family: 'Raleway', sans-serif;">
 
 		</div>
 	</div>
@@ -127,5 +98,53 @@
 	<script type="text/javascript" src="https://unpkg.com/@glidejs/glide@3.3.0/dist/glide.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	<script type="text/javascript" src="js/slick.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$('.results').slick({
+				  prevArrow: false,
+				  nextArrow: false,
+				  variableWidth: true,
+				  infinite: false,
+				  speed: 300,
+				  slidesToShow: 4,
+				  slidesToScroll: 4,	
+			});
+
+			let searchParams = new URLSearchParams(window.location.search);
+	        let keyword = searchParams.get('keyword');
+	        let food = "";
+			const HOST = 'http://35.240.133.181/api';
+	        $.ajax({ 
+			   type: 'GET',
+			   dataType: 'json',
+			   url: HOST+'/recipes/?search='+keyword,
+			   success: function(data) {        
+				   	let listFood = data.results;
+				   	console.log(listFood);
+				   	let limit = 5;
+				   	for (var i = 0; i < limit; i++) {
+				
+			   			let foodList = "<div id='foodList' class='row'>"+
+			   				"<div class='col-md-3 ml-3'>"+
+								"<div class='card' style='width: 18rem; height: 400px;'>"+
+								  "<img src='"+listFood[i].image+"' class='card-img-top' style='height:180px;'>"+
+								  "<div class='card-body'>"+
+								    "<h5 class='card-title'>"+listFood[i].title+"</h5>"+
+								    "<a href='#' class='badge badge-primary'>Snack</a>"+
+								    "<a href='#' class='badge badge-success'>Roti</a>"+
+								    "<br><br>"+
+								    "<p style='font-family: "+'Lato, sans-serif;'+"class='card-text'>Manfaat : "+listFood[i].benefit+"</p>"+
+								    "<a href='product-detail.html?id="+listFood[i].id+"' class='btn background-green product-button'>Selengkapnya</a>"+
+								  "</div>"+
+								"</div>"+
+							"</div>"+
+						"</div>";
+						$('.results').slick('slickAdd', foodList);
+				   	}
+			  	}
+			});
+		});
+	</script>
 </body>
 </html>
