@@ -1,0 +1,31 @@
+/*
+
+	Primary color : #2ecc71;
+
+ */
+
+
+.main-nav {
+	background-color: #1D800E;
+	color:white;
+}
+
+.main-nav a {
+	color:white;
+}
+
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
+
+.background-green {
+	background-color: #1D800E;
+	color:white;
+	font-family: 'Lato', sans-serif;
+}
+
+.background-green:hover {
+	color:white;
+}
