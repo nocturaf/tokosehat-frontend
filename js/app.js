@@ -1,3 +1,12 @@
+
+getTags = (data) => {
+    let str = "";
+    for(let i=0; i<data.tags.length; i++) {
+        str+="<a href='#' class='badge badge-"+data.tags[i].color+"'>"+data.tags[i].name+"</a>"
+    }
+    return str;
+}
+
 $(document).ready(function () {
 
 	/**
@@ -133,9 +142,8 @@ $(document).ready(function () {
 					"<div class='card' style='width: 18rem; height: 400px;'>"+
 					  "<img src='"+listFood[i].image+"' class='card-img-top' style='height:180px;'>"+
 					  "<div class='card-body'>"+
-					    "<h5 class='card-title'>"+listFood[i].title+"</h5>"+
-					    "<a href='#' class='badge badge-primary'>Snack</a>"+
-					    "<a href='#' class='badge badge-success'>Roti</a>"+
+                        "<h5 class='card-title'>"+listFood[i].title+"</h5>"+
+                        getTags(listFood[i])+
 					    "<br><br>"+
 					    "<p style='font-family: "+'Lato, sans-serif;'+"class='card-text'>Manfaat : "+listFood[i].benefit+"</p>"+
 					    "<a href='product-detail.html?id="+listFood[i].id+"' class='btn background-green product-button'>Selengkapnya</a>"+
@@ -162,9 +170,8 @@ $(document).ready(function () {
    				"<div class='col-md-3 ml-3'>"+
 					"<div class='card' style='width: 18rem; height: 200px;'>"+
 					  "<div class='card-body'>"+
-					    "<h5 class='card-title'>"+listPurchases[i].recipe.title+"</h5>"+
-					    "<a href='#' class='badge badge-primary'>Snack</a>"+
-					    "<a href='#' class='badge badge-success'>Roti</a>"+
+                        "<h5 class='card-title'>"+listPurchases[i].recipe.title+"</h5>"+
+                        getTags(listPurchases[i].recipe)+
 					    "<br><br>"+
 					    "<p style='font-family: "+'Lato, sans-serif;'+"class='card-text'>Manfaat : "+listPurchases[i].recipe.benefit+"</p>"+
 					    "<a href='product-detail.html?id="+listPurchases[i].recipe.id+"' class='btn background-green product-button'>Selengkapnya</a>"+
@@ -193,9 +200,8 @@ $(document).ready(function () {
 					"<div class='card' style='width: 18rem; height: 400px;'>"+
 					  "<img src='"+listCategories[i].image+"' class='card-img-top' style='height:180px;'>"+
 					  "<div class='card-body'>"+
-					    "<h5 class='card-title'>"+listCategories[i].title+"</h5>"+
-					    "<a href='#' class='badge badge-primary'>Snack</a>"+
-					    "<a href='#' class='badge badge-success'>Roti</a>"+
+                        "<h5 class='card-title'>"+listCategories[i].title+"</h5>"+
+                        getTags(listCategories[i])+
 					    "<br><br>"+
 					    "<p style='font-family: "+'Lato, sans-serif;'+"class='card-text'>Manfaat : "+listCategories[i].benefit+"</p>"+
 					    "<a href='product-detail.html?id="+listCategories[i].id+"' class='btn background-green product-button'>Selengkapnya</a>"+
@@ -225,9 +231,8 @@ $(document).ready(function () {
 					"<div class='card' style='width: 18rem; height: 400px;'>"+
 					  "<img src='"+listCategories[i].image+"' class='card-img-top' style='height:180px;'>"+
 					  "<div class='card-body'>"+
-					    "<h5 class='card-title'>"+listCategories[i].title+"</h5>"+
-					    "<a href='#' class='badge badge-primary'>Snack</a>"+
-					    "<a href='#' class='badge badge-success'>Roti</a>"+
+                        "<h5 class='card-title'>"+listCategories[i].title+"</h5>"+
+                        getTags(listCategories[i])+
 					    "<br><br>"+
 					    "<p style='font-family: "+'Lato, sans-serif;'+"class='card-text'>Manfaat : "+listCategories[i].benefit+"</p>"+
 					    "<a href='product-detail.html?id="+listCategories[i].id+"' class='btn background-green product-button'>Selengkapnya</a>"+
@@ -257,9 +262,8 @@ $(document).ready(function () {
 					"<div class='card' style='width: 18rem; height: 400px;'>"+
 					  "<img src='"+listCategories[i].image+"' class='card-img-top' style='height:180px;'>"+
 					  "<div class='card-body'>"+
-					    "<h5 class='card-title'>"+listCategories[i].title+"</h5>"+
-					    "<a href='#' class='badge badge-primary'>Snack</a>"+
-					    "<a href='#' class='badge badge-success'>Roti</a>"+
+                        "<h5 class='card-title'>"+listCategories[i].title+"</h5>"+
+                        getTags(listCategories[i])+
 					    "<br><br>"+
 					    "<p style='font-family: "+'Lato, sans-serif;'+"class='card-text'>Manfaat : "+listCategories[i].benefit+"</p>"+
 					    "<a href='product-detail.html?id="+listCategories[i].id+"' class='btn background-green product-button'>Selengkapnya</a>"+
